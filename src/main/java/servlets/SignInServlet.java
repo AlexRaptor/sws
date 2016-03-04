@@ -26,6 +26,8 @@ public class SignInServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 
+        System.out.println( "--- UP: " + login + " : " + password );
+
         resp.setContentType( "text/html;charset=utf-8" );
 
         UserProfile userProfile = accountService.getUserByLogin(login);

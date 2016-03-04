@@ -1,41 +1,22 @@
 package accounts;
 
-import java.util.HashMap;
-import java.util.Map;
+import dbService.DBService;
+import dbService.dataSets.UsersDataSet;
 
-/**
- * @author v.chibrikov
- *         <p>
- *         Пример кода для курса на https://stepic.org/
- *         <p>
- *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
- */
 public class AccountService {
-    private final Map<String, UserProfile> loginToProfile;
-    private final Map<String, UserProfile> sessionIdToProfile;
+    private final DBService dbService;
 
-    public AccountService() {
-        loginToProfile = new HashMap<>();
-        sessionIdToProfile = new HashMap<>();
+    public AccountService( DBService dbService ) {
+
+        this.dbService = dbService;
     }
 
     public void addNewUser(UserProfile userProfile) {
-        loginToProfile.put(userProfile.getLogin(), userProfile);
+        dbService.addUser( userProfile.getLogin(), userProfile.getPass() );
     }
 
     public UserProfile getUserByLogin(String login) {
-        return loginToProfile.get(login);
-    }
-
-    public UserProfile getUserBySessionId(String sessionId) {
-        return sessionIdToProfile.get(sessionId);
-    }
-
-    public void addSession(String sessionId, UserProfile userProfile) {
-        sessionIdToProfile.put(sessionId, userProfile);
-    }
-
-    public void deleteSession(String sessionId) {
-        sessionIdToProfile.remove(sessionId);
+        UsersDataSet usersDataSet = dbService.getUser( login );
+        return new UserProfile( usersDataSet.getName(), usersDataSet.getPassword(), usersDataSet.getName() );
     }
 }

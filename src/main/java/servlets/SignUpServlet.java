@@ -27,8 +27,11 @@ public class SignUpServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 
+        System.out.println( "--- UP: " + login + " : " + password );
+
         accountService.addNewUser(new UserProfile(login, password, "e-mail"));
 
+        resp.setContentType( "text/html;charset=utf-8" );
         resp.setStatus(HttpServletResponse.SC_OK);
     }
 }
