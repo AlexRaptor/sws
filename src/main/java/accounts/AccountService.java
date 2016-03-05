@@ -17,6 +17,9 @@ public class AccountService {
 
     public UserProfile getUserByLogin(String login) {
         UsersDataSet usersDataSet = dbService.getUser( login );
+        if (usersDataSet == null) {
+            return null;
+        }
         return new UserProfile( usersDataSet.getName(), usersDataSet.getPassword(), usersDataSet.getName() );
     }
 }

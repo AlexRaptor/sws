@@ -3,34 +3,31 @@ package main;
 import accounts.AccountService;
 import accounts.UserProfile;
 import dbService.DBService;
-import dbService.dataSets.UsersDataSet;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import servlets.SessionsServlet;
 import servlets.SignInServlet;
 import servlets.SignUpServlet;
-import servlets.UsersServlet;
 
 public class Main {
     public static void main(String[] args) throws Exception
     {
         DBService dbService = new DBService();
-        dbService.printConnectInfo();
+//        dbService.printConnectInfo();
 
         AccountService accountService = new AccountService( dbService );
 
-        if( accountService.getUserByLogin( "admin" ) == null )
-        {
-            accountService.addNewUser( new UserProfile( "admin" ) );
-        }
-        if( accountService.getUserByLogin( "test" ) == null )
-        {
-            accountService.addNewUser( new UserProfile( "test" ) );
-        }
+//        if( accountService.getUserByLogin( "admin" ) == null )
+//        {
+//            accountService.addNewUser( new UserProfile( "admin" ) );
+//        }
+//        if( accountService.getUserByLogin( "test" ) == null )
+//        {
+//            accountService.addNewUser( new UserProfile( "test" ) );
+//        }
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 //        context.addServlet(new ServletHolder(new UsersServlet(accountService)), "/api/v1/users");
