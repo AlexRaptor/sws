@@ -2,6 +2,7 @@ package main;
 
 import accounts.AccountService;
 import accounts.UserProfile;
+import chat.WebSocketChatServlet;
 import dbService.DBService;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -15,10 +16,10 @@ import servlets.SignUpServlet;
 public class Main {
     public static void main(String[] args) throws Exception
     {
-        DBService dbService = new DBService();
+//        DBService dbService = new DBService();
 //        dbService.printConnectInfo();
 
-        AccountService accountService = new AccountService( dbService );
+//        AccountService accountService = new AccountService( dbService );
 
 //        if( accountService.getUserByLogin( "admin" ) == null )
 //        {
@@ -32,10 +33,13 @@ public class Main {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 //        context.addServlet(new ServletHolder(new UsersServlet(accountService)), "/api/v1/users");
 //        context.addServlet(new ServletHolder(new SessionsServlet(accountService)), "/api/v1/sessions");
-        context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
-        context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
+//        context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
+//        context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
+
+        context.addServlet( new ServletHolder( new WebSocketChatServlet() ), "/chat" );
 
         ResourceHandler resource_handler = new ResourceHandler();
+        resource_handler.setDirectoriesListed( true );
         resource_handler.setResourceBase("public_html");
 
         HandlerList handlers = new HandlerList();
