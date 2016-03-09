@@ -6,8 +6,6 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
-import java.io.IOException;
-
 @SuppressWarnings( "UnusedDeclaration" )
 @WebSocket
 public class ChatWebSocket
