@@ -1,16 +1,14 @@
 package main;
 
-import accounts.AccountServer;
-import accounts.AccountServerController;
-import accounts.AccountServerControllerMBean;
-import accounts.AccountServerImpl;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
-import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import servlets.AdminRequestServlet;
+import resources.ResourceServer;
+import resources.ResourceServerController;
+import resources.ResourceServerControllerMBean;
+import servlets.ResourcesRequestServlet;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
@@ -32,12 +30,19 @@ public class Main {
 //            accountService.addNewUser( new UserProfile( "test" ) );
 //        }
 
-        AccountServer accountServer = new AccountServerImpl(10);
+//        AccountServer accountServer = new AccountServerImpl(10);
+//
+//        AccountServerControllerMBean ascb = new AccountServerController(accountServer);
+//        MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
+//        ObjectName name = new ObjectName("Admin:type=AccountServerController.usersLimit");
+//        mbs.registerMBean(ascb, name);
 
-        AccountServerControllerMBean ascb = new AccountServerController(accountServer);
-        MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
-        ObjectName name = new ObjectName("Admin:type=AccountServerController.usersLimit");
-        mbs.registerMBean(ascb, name);
+        ResourceServer resourceServer = new ResourceServer();
+
+        ResourceServerControllerMBean rscb = new ResourceServerController(resourceServer);
+        MBeanServer msb = ManagementFactory.getPlatformMBeanServer();
+        ObjectName name = new ObjectName("Admin:type=ResourceServerController");
+        msb.registerMBean(rscb, name);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 //        context.addServlet(new ServletHolder(new UsersServlet(accountService)), "/api/v1/users");
@@ -45,14 +50,16 @@ public class Main {
 //        context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
 //        context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
 //        context.addServlet( new ServletHolder( new WebSocketChatServlet() ), "/chat" );
-        context.addServlet(new ServletHolder(new AdminRequestServlet(accountServer)), "/admin");
+//        context.addServlet(new ServletHolder(new AdminRequestServlet(accountServer)), "/admin");
+        context.addServlet(new ServletHolder(new ResourcesRequestServlet(resourceServer)), "/resources");
 
-        ResourceHandler resource_handler = new ResourceHandler();
-        resource_handler.setDirectoriesListed(true);
-        resource_handler.setResourceBase("public_html");
+//        ResourceHandler resource_handler = new ResourceHandler();
+//        resource_handler.setDirectoriesListed(true);
+//        resource_handler.setResourceBase("public_html");
 
         HandlerList handlers = new HandlerList();
-        handlers.setHandlers(new Handler[]{resource_handler, context});
+//        handlers.setHandlers(new Handler[]{resource_handler, context});
+        handlers.setHandlers(new Handler[]{context});
 
         Server server = new Server(8080);
         server.setHandler(handlers);
