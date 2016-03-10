@@ -1,7 +1,6 @@
 package servlets;
 
-import accounts.AccountService;
-import accounts.UserProfile;
+import accounts.AccountServiceImpl;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -18,17 +17,17 @@ import java.io.IOException;
  *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
  */
 public class SessionsServlet extends HttpServlet {
-    private final AccountService accountService;
+    private final AccountServiceImpl accountServiceImpl;
 
-    public SessionsServlet(AccountService accountService) {
-        this.accountService = accountService;
+    public SessionsServlet( AccountServiceImpl accountServiceImpl ) {
+        this.accountServiceImpl = accountServiceImpl;
     }
 
     //get logged user profile
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
 //        String sessionId = request.getSession().getId();
-//        UserProfile profile = accountService.getUserBySessionId(sessionId);
+//        UserProfile profile = accountServiceImpl.getUserBySessionId(sessionId);
 //        if (profile == null) {
             response.setContentType("text/html;charset=utf-8");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -53,14 +52,14 @@ public class SessionsServlet extends HttpServlet {
 //            return;
 //        }
 //
-//        UserProfile profile = accountService.getUserByLogin(login);
+//        UserProfile profile = accountServiceImpl.getUserByLogin(login);
 //        if (profile == null || !profile.getPass().equals(pass)) {
 //            response.setContentType("text/html;charset=utf-8");
 //            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 //            return;
 //        }
 //
-//        accountService.addSession(request.getSession().getId(), profile);
+//        accountServiceImpl.addSession(request.getSession().getId(), profile);
 //        Gson gson = new Gson();
 //        String json = gson.toJson(profile);
 //        response.setContentType("text/html;charset=utf-8");
@@ -72,12 +71,12 @@ public class SessionsServlet extends HttpServlet {
     public void doDelete(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
 //        String sessionId = request.getSession().getId();
-//        UserProfile profile = accountService.getUserBySessionId(sessionId);
+//        UserProfile profile = accountServiceImpl.getUserBySessionId(sessionId);
 //        if (profile == null) {
             response.setContentType("text/html;charset=utf-8");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 //        } else {
-//            accountService.deleteSession(sessionId);
+//            accountServiceImpl.deleteSession(sessionId);
 //            response.setContentType("text/html;charset=utf-8");
 //            response.getWriter().println("Goodbye!");
 //            response.setStatus(HttpServletResponse.SC_OK);

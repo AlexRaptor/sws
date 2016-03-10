@@ -1,6 +1,6 @@
 package servlets;
 
-import accounts.AccountService;
+import accounts.AccountServiceImpl;
 import accounts.UserProfile;
 
 import javax.servlet.ServletException;
@@ -15,10 +15,10 @@ import java.io.IOException;
  * date: 03.03.16.
  */
 public class SignInServlet extends HttpServlet {
-    private final AccountService accountService;
+    private final AccountServiceImpl accountServiceImpl;
 
-    public SignInServlet(AccountService accountService) {
-        this.accountService = accountService;
+    public SignInServlet( AccountServiceImpl accountServiceImpl ) {
+        this.accountServiceImpl = accountServiceImpl;
     }
 
     @Override
@@ -30,13 +30,13 @@ public class SignInServlet extends HttpServlet {
 
         resp.setContentType( "text/html;charset=utf-8" );
 
-        UserProfile userProfile = accountService.getUserByLogin(login);
+/*        UserProfile userProfile = accountServiceImpl.getUserByLogin(login);
         if (userProfile != null && userProfile.getPass().equals(password)) {
             resp.getWriter().println("Authorized: " + login);
             resp.setStatus( HttpServletResponse.SC_OK );
         } else {
             resp.getWriter().println("Unauthorized");
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
+        }*/
     }
 }

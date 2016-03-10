@@ -1,6 +1,6 @@
 package servlets;
 
-import accounts.AccountService;
+import accounts.AccountServiceImpl;
 import accounts.UserProfile;
 
 import javax.servlet.ServletException;
@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * <p>/signup</p>
@@ -16,10 +15,10 @@ import java.util.Map;
  * date: 03.03.16.
  */
 public class SignUpServlet extends HttpServlet {
-    private final AccountService accountService;
+    private final AccountServiceImpl accountServiceImpl;
 
-    public SignUpServlet(AccountService accountService) {
-        this.accountService = accountService;
+    public SignUpServlet( AccountServiceImpl accountServiceImpl ) {
+        this.accountServiceImpl = accountServiceImpl;
     }
 
     @Override
@@ -29,7 +28,7 @@ public class SignUpServlet extends HttpServlet {
 
         System.out.println( "--- UP: " + login + " : " + password );
 
-        accountService.addNewUser(new UserProfile(login, password, "e-mail"));
+//        accountServiceImpl.addNewUser(new UserProfile(login, password, "e-mail"));
 
         resp.setContentType( "text/html;charset=utf-8" );
         resp.setStatus(HttpServletResponse.SC_OK);

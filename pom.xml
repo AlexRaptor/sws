@@ -6,33 +6,34 @@
 
     <groupId>me.imco</groupId>
     <artifactId>sws</artifactId>
-    <version>3.0</version>
+    <version>5.0</version>
 
     <properties>
         <com.h2database.h2.version>1.4.187</com.h2database.h2.version>
         <mysql.mysql-connector-java.version>5.1.35</mysql.mysql-connector-java.version>
         <org.hibernate.hibernate-core.version>4.3.10.Final</org.hibernate.hibernate-core.version>
-        <org.eclipse.jetty.version>9.3.0.M0</org.eclipse.jetty.version>
+        <org.eclipse.jetty.version>9.3.0.M1</org.eclipse.jetty.version>
+        <org.apache.logging.log4j.version>2.2</org.apache.logging.log4j.version>
+        <junit.version>4.11</junit.version>
+        <org.mockito.version>1.8.4</org.mockito.version>
         <source.version>1.8</source.version>
         <target.version>1.8</target.version>
     </properties>
 
     <build>
-
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.3</version>
                 <configuration>
                     <source>${source.version}</source>
                     <target>${target.version}</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -47,9 +48,7 @@
                     </archive>
                 </configuration>
             </plugin>
-
         </plugins>
-
     </build>
 
     <dependencies>
@@ -96,16 +95,34 @@
             <version>${mysql.mysql-connector-java.version}</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.h2database</groupId>-->
-            <!--<artifactId>h2</artifactId>-->
-            <!--<version>${com.h2database.h2.version}</version>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${org.hibernate.hibernate-core.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${org.apache.logging.log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${org.apache.logging.log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${org.mockito.version}</version>
         </dependency>
 
     </dependencies>
