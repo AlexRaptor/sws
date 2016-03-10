@@ -5,6 +5,6 @@ package accounts;
  */
 public interface AccountServer
 {
-    public int getUsersLimit();
-    public void setUsersLimit( int usersLimit );
+    int getUsersLimit();
+    void setUsersLimit( int usersLimit );
 }
