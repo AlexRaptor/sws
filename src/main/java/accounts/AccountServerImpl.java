@@ -1,10 +1,9 @@
 package accounts;
 
-public class AccountServerImpl implements AccountServer
-{
+public class AccountServerImpl implements AccountServer {
     private int usersLimit;
 
-    public AccountServerImpl( int usersLimit ) {
+    public AccountServerImpl(int usersLimit) {
         this.usersLimit = usersLimit;
     }
 
@@ -14,7 +13,7 @@ public class AccountServerImpl implements AccountServer
     }
 
     @Override
-    public void setUsersLimit( int usersLimit ) {
+    public void setUsersLimit(int usersLimit) {
         this.usersLimit = usersLimit;
     }
 

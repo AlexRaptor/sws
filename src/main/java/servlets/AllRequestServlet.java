@@ -35,7 +35,7 @@ public class AllRequestServlet extends HttpServlet
 
         String message = request.getParameter( "message" );
 
-        response.setContentType( "text/html;charset=utf-8" );
+        response.setContentType("text/html;charset=utf-8" );
 
         if( message == null || message.isEmpty() )
         {

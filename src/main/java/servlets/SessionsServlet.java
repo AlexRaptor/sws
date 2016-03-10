@@ -1,7 +1,6 @@
 package servlets;
 
 import accounts.AccountServiceImpl;
-import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +18,7 @@ import java.io.IOException;
 public class SessionsServlet extends HttpServlet {
     private final AccountServiceImpl accountServiceImpl;
 
-    public SessionsServlet( AccountServiceImpl accountServiceImpl ) {
+    public SessionsServlet(AccountServiceImpl accountServiceImpl) {
         this.accountServiceImpl = accountServiceImpl;
     }
 
@@ -29,8 +28,8 @@ public class SessionsServlet extends HttpServlet {
 //        String sessionId = request.getSession().getId();
 //        UserProfile profile = accountServiceImpl.getUserBySessionId(sessionId);
 //        if (profile == null) {
-            response.setContentType("text/html;charset=utf-8");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("text/html;charset=utf-8");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 //        } else {
 //            Gson gson = new Gson();
 //            String json = gson.toJson(profile);
@@ -47,8 +46,8 @@ public class SessionsServlet extends HttpServlet {
 //        String pass = request.getParameter("pass");
 //
 //        if (login == null || pass == null) {
-            response.setContentType("text/html;charset=utf-8");
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        response.setContentType("text/html;charset=utf-8");
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 //            return;
 //        }
 //
@@ -73,8 +72,8 @@ public class SessionsServlet extends HttpServlet {
 //        String sessionId = request.getSession().getId();
 //        UserProfile profile = accountServiceImpl.getUserBySessionId(sessionId);
 //        if (profile == null) {
-            response.setContentType("text/html;charset=utf-8");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("text/html;charset=utf-8");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 //        } else {
 //            accountServiceImpl.deleteSession(sessionId);
 //            response.setContentType("text/html;charset=utf-8");

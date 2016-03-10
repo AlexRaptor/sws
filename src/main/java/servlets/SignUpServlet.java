@@ -1,7 +1,6 @@
 package servlets;
 
 import accounts.AccountServiceImpl;
-import accounts.UserProfile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,13 +10,14 @@ import java.io.IOException;
 
 /**
  * <p>/signup</p>
+ *
  * @author raptor
- * date: 03.03.16.
+ *         date: 03.03.16.
  */
 public class SignUpServlet extends HttpServlet {
     private final AccountServiceImpl accountServiceImpl;
 
-    public SignUpServlet( AccountServiceImpl accountServiceImpl ) {
+    public SignUpServlet(AccountServiceImpl accountServiceImpl) {
         this.accountServiceImpl = accountServiceImpl;
     }
 
@@ -26,11 +26,11 @@ public class SignUpServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 
-        System.out.println( "--- UP: " + login + " : " + password );
+        System.out.println("--- UP: " + login + " : " + password);
 
 //        accountServiceImpl.addNewUser(new UserProfile(login, password, "e-mail"));
 
-        resp.setContentType( "text/html;charset=utf-8" );
+        resp.setContentType("text/html;charset=utf-8");
         resp.setStatus(HttpServletResponse.SC_OK);
     }
 }

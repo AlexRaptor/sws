@@ -17,8 +17,7 @@ import javax.management.ObjectName;
 import java.lang.management.ManagementFactory;
 
 public class Main {
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
 //        DBService dbService = new DBService();
 //        dbService.printConnectInfo();
 
@@ -33,12 +32,12 @@ public class Main {
 //            accountService.addNewUser( new UserProfile( "test" ) );
 //        }
 
-        AccountServer accountServer = new AccountServerImpl( 10 );
+        AccountServer accountServer = new AccountServerImpl(10);
 
-        AccountServerControllerMBean ascb = new AccountServerController( accountServer );
+        AccountServerControllerMBean ascb = new AccountServerController(accountServer);
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
-        ObjectName name = new ObjectName( "Admin:type=AccountServerController.usersLimit" );
-        mbs.registerMBean( ascb, name );
+        ObjectName name = new ObjectName("Admin:type=AccountServerController.usersLimit");
+        mbs.registerMBean(ascb, name);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 //        context.addServlet(new ServletHolder(new UsersServlet(accountService)), "/api/v1/users");
@@ -46,10 +45,10 @@ public class Main {
 //        context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
 //        context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
 //        context.addServlet( new ServletHolder( new WebSocketChatServlet() ), "/chat" );
-        context.addServlet( new ServletHolder( new AdminRequestServlet( accountServer ) ), "/admin" );
+        context.addServlet(new ServletHolder(new AdminRequestServlet(accountServer)), "/admin");
 
         ResourceHandler resource_handler = new ResourceHandler();
-        resource_handler.setDirectoriesListed( true );
+        resource_handler.setDirectoriesListed(true);
         resource_handler.setResourceBase("public_html");
 
         HandlerList handlers = new HandlerList();
@@ -59,7 +58,7 @@ public class Main {
         server.setHandler(handlers);
 
         server.start();
-        System.out.println( "Server started" );
+        System.out.println("Server started");
         server.join();
     }
 }
