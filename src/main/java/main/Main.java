@@ -70,8 +70,8 @@ public class Main {
 //            server.start();
 //            server.join();
 
-            new ChatServer(5050, 10).start();
-            System.out.println("Server started");
+            new ChatServer(5050).start();
+//            System.out.println("Server started");
         } catch (IOException e) {
             e.printStackTrace();
 //        } catch (InterruptedException e) {
